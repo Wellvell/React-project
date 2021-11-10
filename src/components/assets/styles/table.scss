@@ -1,0 +1,139 @@
+@import 'general';
+
+.table {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-self: center;
+    padding: 20px;
+
+    @media screen and (min-width: 800px) {
+        font-size: 20px;
+    }
+
+    @media screen and (max-width: 799px) and (min-width: 500px) {
+        font-size: 15px;
+    }
+
+    @media screen and (max-width: 499px) {
+        font-size: 13px;
+    }
+
+    font-family: $tableFont;
+
+    table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        width: 100%;
+
+        input {
+            text-align: center;
+
+            @media screen and (min-width: 800px) {
+                font-size: 20px;
+                width: 50%;
+            }
+
+            @media screen and (max-width: 799px) and (min-width: 500px) {
+                font-size: 15px;
+                width: 70%;
+            }
+
+            @media screen and (max-width: 499px) {
+                font-size: 13px;
+                width: 70%;
+            }
+
+            color: $black;
+            font-family: $tableFont;
+        }
+
+        ::placeholder {
+            color: $black;
+        }
+
+        th {
+            border-bottom: 1px solid $orange;
+
+            @media screen and (min-width: 600px) {
+                width: 200px;
+            }
+
+            @media screen and (max-width: 599px) {
+                width: 50px;
+            }
+
+            text-align: center;
+            color: $blue;
+        }
+
+        .buttons-col {
+            width: 100px !important;
+        }
+
+        td {
+            @media screen and (min-width: 600px) {
+                width: 200px;
+            }
+
+            @media screen and (max-width: 599px) {
+                width: 50px;
+            }
+
+            border: 1px solid $orange;
+            height: 50px;
+        }
+
+        .buttons {
+            width: 100px !important;
+
+            button {
+                display: inline-block;
+                margin: 5px;
+
+                @media screen and (min-width: 800px) {
+                    padding: 10px 20px;
+                }
+
+                @media screen and (max-width: 799px) and (min-width: 500px) {
+                    padding: 5px 10px;
+                }
+
+                @media screen and (max-width: 499px) {
+                    padding: 5px 5px;
+                }
+
+                cursor: pointer;
+                border-radius: 20px;
+                transition: .2s linear;
+                border: none;
+            }
+
+            .edit {
+                background: $light-blue;
+            }
+
+            .save {
+                background: $blue;
+            }
+
+            .del {
+                background: $orange;
+            }
+
+            .edit:hover {
+                box-shadow: 0 0 0 2px $white, 0 0 0 4px $light-blue;
+            }
+
+            .del:hover {
+                box-shadow: 0 0 0 2px $white, 0 0 0 4px $orange;
+            }
+
+            .save:hover {
+                box-shadow: 0 0 0 2px $white, 0 0 0 4px $blue;
+            }
+        }
+
+    }
+
+}

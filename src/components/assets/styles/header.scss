@@ -1,0 +1,71 @@
+@import 'general';
+
+.header {
+    @media screen and (min-width: 600px) {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 0.5fr 0.25fr 0.25fr;
+        background-color: $violet;
+        color: $white;
+        font-family: $headerFont;
+        justify-content: center;
+    }
+
+    @media screen and (max-width: 599px) {
+        display: grid;
+        grid-template-rows: 50px 100px 100px;
+        grid-template-columns: 1fr;
+        background-color: $violet;
+        color: $white;
+        font-family: $headerFont;
+        justify-content: center;
+    }
+
+    @media screen and (min-width: 600px) {
+        height: 130px;
+    }
+
+    @media screen and (max-width: 599px) {
+        height: 250px;
+    }
+
+    align-items: center;
+
+    &__text {
+        @media screen and (min-width: 600px) {
+            font-size: 25px;
+        }
+
+        @media screen and (max-width: 599px) {
+            font-size: 20px;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        grid-template-rows: 1fr 1fr;
+        justify-self: center;
+        background-color: $violet;
+        padding: 10px;
+        margin: 10px;
+        border: none;
+
+        &__text {
+            color: $white;
+            font-family: $headerFont;
+
+            @media screen and (min-width: 600px) {
+                font-size: 20px;
+            }
+
+            @media screen and (max-width: 599px) {
+                font-size: 17px;
+            }
+        }
+    }
+
+    &__buttons:hover {
+        border: 2px dashed $white;
+        border-radius: 20px;
+    }
+}

@@ -1,0 +1,35 @@
+@import 'general';
+
+.App {
+    display: grid;
+    min-height: 100vh;
+}
+
+.footer {
+    width: 100%;
+    align-self: flex-end;
+    justify-self: center;
+    display: grid;
+    grid-template-rows: 30px 50px;
+    grid-template-columns: 1fr;
+    background-color: $violet;
+    color: $white;
+    font-family: $headerFont;
+    justify-content: center;
+
+    &__h {
+        grid-row: 1/2;
+    }
+
+    &__contact {
+        grid-row: 2/3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            height: 24px;
+            margin-right: 5px;
+        }
+    }
+}
