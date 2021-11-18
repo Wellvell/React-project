@@ -1,4 +1,4 @@
-@import 'general';
+@import "general";
 
 .card {
     position: relative;
@@ -10,26 +10,36 @@
     right: 0;
     bottom: 0;
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 1200px) {
         height: 35vw;
     }
 
-    @media screen and (max-width: 1023px) {
+    @media screen and (max-width: 1199px) and (min-width: 1000px) {
+        height: 50vw;
+    }
+
+    @media screen and (max-width: 999px) {
         height: 70vw;
     }
 
     font-family: $cardFont;
 
-    .card__front,
-    .card__back {
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    &__front {
+        background-color: $light-violet;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+            0 10px 10px rgba(0, 0, 0, 0.22);
 
-        @media screen and (min-width: 1024px) {
+        @media screen and (min-width: 1200px) {
             width: 40vw;
             height: 20vw;
         }
 
-        @media screen and (max-width: 1023px) {
+        @media screen and (max-width: 1199px) and (min-width: 1000px) {
+            width: 50vw;
+            height: 30vw;
+        }
+
+        @media screen and (max-width: 999px) {
             width: 60vw;
             height: 40vw;
         }
@@ -40,56 +50,77 @@
         left: 0;
         right: 0;
         bottom: 8vw;
-        border: none;
+        border: 3px solid $dark-violet;
         border-radius: 10px;
         transition: 1s;
-        backface-visibility: hidden;
         display: grid;
         align-items: center;
-    }
 
-
-    &__front {
-        background-color: $light-violet;
-
-        @media screen and (min-width: 1024px) {
+        @media screen and (min-width: 801px) {
             grid-template-rows: 60px 40px;
         }
 
-        @media screen and (max-width: 1023px) {
+        @media screen and (max-width: 800px) {
             grid-template-rows: 40px 20px;
         }
 
         align-content: center;
 
         &__word {
-            @media screen and (min-width: 1024px) {
+            @media screen and (min-width: 801px) {
                 font-size: 40px;
             }
 
-            @media screen and (max-width: 1023px) {
+            @media screen and (max-width: 800px) {
                 font-size: 25px;
             }
-
         }
 
         &__transcription {
             font-size: 18px;
             margin-bottom: 20px;
         }
-    }
 
-    &__back {
-        background-color: $dark-violet;
-        transform: rotateY(180deg);
-
-        &__translate {
-            @media screen and (min-width: 1024px) {
-                font-size: 40px;
+        &__button {
+            border: 2px solid $dark-violet;
+            color: $dark-violet;
+            font-weight: bold;
+            justify-self: center;
+            margin-top: 10%;
+            width: 27%;
+            height: 55%;
+            font-family: $cardFont;
+            @media screen and (min-width: 801px) {
+                font-size: 18px;
             }
 
-            @media screen and (max-width: 1023px) {
-                font-size: 25px;
+            @media screen and (max-width: 800px) {
+                font-size: 15px;
+            }
+
+            border-radius: 10px;
+        }
+
+        &__button:hover {
+            background-color: $dark-violet;
+            color: $white;
+            font-weight: normal;
+        }
+
+        &__translate {
+            width: 27%;
+            height: 55%;
+            margin-top: 10%;
+            border: none;
+            justify-self: center;
+            font-family: $cardFont;
+            background-color: $light-violet;
+            @media screen and (min-width: 801px) {
+                font-size: 22px;
+            }
+
+            @media screen and (max-width: 800px) {
+                font-size: 18px;
             }
         }
     }
@@ -101,7 +132,7 @@
 
         &__buttons {
             font-family: $cardFont;
-            transition: .2s linear;
+            transition: 0.2s linear;
 
             @media screen and (min-width: 1024px) {
                 width: 10vw;
@@ -154,13 +185,4 @@
             box-shadow: 0 0 0 2px $white, 0 0 0 4px $light-blue;
         }
     }
-
-}
-
-.card:hover .card__front {
-    transform: rotateY(180deg);
-}
-
-.card:hover .card__back {
-    transform: rotateY(360deg);
 }

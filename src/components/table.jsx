@@ -6,7 +6,6 @@ const words = [
         word: "hedgehog",
         transcription: "[ ˈhedʒhɒɡв ]",
         translate: "еж",
-        buttons: true
     },
     {
         word: "unicorn",
@@ -17,7 +16,6 @@ const words = [
         word: "cat",
         transcription: "[ kot ]",
         translate: "кот",
-        buttons: true
     },
     {
         word: "honey",

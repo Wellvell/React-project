@@ -1,4 +1,4 @@
-@import 'general';
+@import "general";
 
 .table {
     display: flex;
@@ -46,6 +46,11 @@
 
             color: $black;
             font-family: $tableFont;
+        }
+
+        .input {
+            border: none;
+            outline: none;
         }
 
         ::placeholder {
@@ -105,7 +110,7 @@
 
                 cursor: pointer;
                 border-radius: 20px;
-                transition: .2s linear;
+                transition: 0.2s linear;
                 border: none;
             }
 
@@ -115,6 +120,10 @@
 
             .save {
                 background: $blue;
+            }
+
+            .save-hide {
+                display: none;
             }
 
             .del {
@@ -133,7 +142,5 @@
                 box-shadow: 0 0 0 2px $white, 0 0 0 4px $blue;
             }
         }
-
     }
-
 }
