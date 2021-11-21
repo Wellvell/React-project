@@ -13,15 +13,18 @@
     justify-content: center;
 
     @media screen and (min-width: 1200px) {
-        height: 20vh;
+        height: 10vh;
+        margin-top: 8vh;
     }
 
     @media screen and (max-width: 1199px) and (min-width: 1000px) {
-        height: 30vh;
+        height: 20vh;
+        margin-top: 12vh;
     }
 
     @media screen and (max-width: 999px) {
         height: 40vw;
+        margin-top: 5vh;
     }
 
     &__h {

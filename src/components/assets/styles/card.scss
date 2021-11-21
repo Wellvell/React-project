@@ -9,6 +9,18 @@
     right: 0;
     bottom: 0;
 
+    @media screen and (min-width: 1200px) {
+        height: 30vw;
+    }
+
+    @media screen and (max-width: 1199px) and (min-width: 1000px) {
+        height: 45vw;
+    }
+
+    @media screen and (max-width: 999px) {
+        height: 65vw;
+    }
+
     font-family: $cardFont;
 
     &__front {
@@ -31,8 +43,7 @@
             height: 40vw;
         }
 
-        position: absolute;
-        margin: auto;
+        margin: 5vh;
         top: 0;
         left: 0;
         right: 0;
@@ -74,7 +85,7 @@
             font-weight: bold;
             justify-self: center;
             margin-top: 10%;
-            width: 38%;
+            width: 50%;
             height: 55%;
             font-family: $cardFont;
             @media screen and (min-width: 801px) {
@@ -86,6 +97,21 @@
             }
 
             border-radius: 10px;
+        }
+
+        &__numbers {
+            font-family: $cardFont;
+            @media screen and (min-width: 1200px) {
+                margin-top: 7vh;
+            }
+
+            @media screen and (max-width: 1199px) and (min-width: 1000px) {
+                margin-top: 7vh;
+            }
+
+            @media screen and (max-width: 999px) {
+                margin-top: 5vh;
+            }
         }
 
         &__button:hover {
@@ -109,71 +135,6 @@
             @media screen and (max-width: 800px) {
                 font-size: 18px;
             }
-        }
-    }
-
-    &__buttons-container {
-        display: flex;
-        align-items: flex-end;
-        margin-bottom: 3vw;
-
-        &__buttons {
-            font-family: $cardFont;
-            transition: 0.2s linear;
-
-            @media screen and (min-width: 1024px) {
-                width: 10vw;
-                height: 5vw;
-                font-size: 18px;
-            }
-
-            @media screen and (max-width: 1023px) and (min-width: 801px) {
-                width: 15vw;
-                height: 10vw;
-                font-size: 16px;
-            }
-
-            @media screen and (max-width: 800px) and (min-width: 501px) {
-                width: 17vw;
-                height: 12vw;
-                font-size: 14px;
-            }
-
-            @media screen and (max-width: 500px) {
-                width: 19vw;
-                height: 14vw;
-                font-size: 14px;
-            }
-
-            border-radius: 10px;
-            border: none;
-            color: $white;
-        }
-
-        &__btn1 {
-            background-color: $orange;
-            margin-right: 10vw;
-        }
-
-        &__btn1:hover {
-            box-shadow: 0 0 0 2px $white, 0 0 0 4px $orange;
-        }
-
-        &__btn2 {
-            background-color: $blue;
-            margin-right: 10vw;
-        }
-
-        &__btn2:hover {
-            box-shadow: 0 0 0 2px $white, 0 0 0 4px $blue;
-        }
-
-        &__btn3 {
-            background-color: $light-blue;
-        }
-
-        &__btn3:hover {
-            box-shadow: 0 0 0 2px $white, 0 0 0 4px $light-blue;
         }
     }
 }

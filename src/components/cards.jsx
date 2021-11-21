@@ -4,42 +4,61 @@ import './assets/styles/cards.scss';
 import {useState} from "react";
 import arrowLeft from './assets/img/arrow-left.png';
 import arrowRight from './assets/img/arrow-right.png';
+import {CSSTransition} from 'react-transition-group'
 
 
 function Cards() {
 
     const [index, setIndex] = useState(0)
+    const [show, setShow] = useState(false);
 
     const slideLeft = () => {
         setIndex(index - 1);
+        setShow(!show)
     };
 
     const slideRight = () => {
         setIndex(index + 1);
+        setShow(!show)
     };
 
 
     return (
         <div className="App">
             <div className="card-container">
-                <button className="leftBtn"
-                onClick={slideLeft}>
+                {index > 0 && (
+                <button className="leftBtn" onClick={() => slideLeft()}>
                     <img src={arrowLeft} alt="arrow left"></img>
                 </button>
-                {words.map((word, n) => {
-                    let position = n > index ? "nextCard" : n === index ? 
-                    "activeCard" : "prevCard";
-                    return <Card 
-                            key={word.word}
-                            word={word.word}
-                            transcription={word.transcription}
-                            translate={word.translate}  
-                            cardStyle={position}/>;
-                })}
-                <button className="rightBtn"
-                onClick={slideRight}>
+                )}
+                {index < words.length - 1 && (
+                <button className="rightBtn" onClick={() => slideRight()}>
                     <img src={arrowRight} alt="arrow right"></img>
                 </button>
+                )}
+                {index > -1 && (
+                    <CSSTransition in={show} classNames="alert" timeout={300}>
+                        <Card
+                        key={words[index].word}
+                        word={words[index].word}
+                        transcription={words[index].transcription}
+                        translate={words[index].translate}
+                        index={index+1}
+                        length={words.length}
+                    />
+                    </CSSTransition>
+                )}
+                <div className="card-container__buttons-container">
+                    <button className="card-container__buttons-container__btn1 card-container__buttons-container__buttons">
+                        Don't know
+                    </button>
+                    <button className="card-container__buttons-container__btn2 card-container__buttons-container__buttons">
+                        Remaining cards
+                    </button>
+                    <button className="card-container__buttons-container__btn3 card-container__buttons-container__buttons">
+                        Know
+                    </button>
+                </div>   
             </div>
         </div>
     );
