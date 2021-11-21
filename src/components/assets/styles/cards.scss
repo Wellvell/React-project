@@ -1,6 +1,7 @@
 .prevCard {
     left: calc(0% + 2rem);
     opacity: 0;
+    display: none;
 }
 
 .activeCard {
@@ -10,6 +11,7 @@
 
 .nextCard {
     left: 100%;
+    display: none;
     transform: translateX(calc(-100% - 2rem));
     opacity: 0;
 }

@@ -29,7 +29,12 @@ function Cards() {
                 {words.map((word, n) => {
                     let position = n > index ? "nextCard" : n === index ? 
                     "activeCard" : "prevCard";
-                    return <Card key={word.word} {...word} cardStyle={position}/>;
+                    return <Card 
+                            key={word.word}
+                            word={word.word}
+                            transcription={word.transcription}
+                            translate={word.translate}  
+                            cardStyle={position}/>;
                 })}
                 <button className="rightBtn"
                 onClick={slideRight}>

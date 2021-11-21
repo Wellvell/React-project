@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './assets/styles/card.scss';
 
-function Card(props, cardStyle) {
+function Card(props) {
 
     const [pressed, setPressed] = useState(false);
 
@@ -10,7 +10,7 @@ function Card(props, cardStyle) {
     }
 
     return (
-        <div className={"card" + `${cardStyle}`}>
+        <div className={"card" + `${props.cardStyle}`}>
             <div className="card__front">
                 <p className="card__front__word">{props.word}</p>
                 <p className="card__front__transcription">{props.transcription}</p>
