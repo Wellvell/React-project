@@ -17,9 +17,9 @@ function TableWords(props) {
             <td>{pressed? <input placeholder={props.transcription} />: <input readOnly className="input" value={props.transcription} />}</td>
             <td>{pressed? <input placeholder={props.translate} />: <input readOnly className="input" value={props.translate} />}</td>
             <td className="buttons">
-                <button title={pressed? "cancel edit": "edit"} onClick={handleChange} className="edit"><img src={edit} /></button>
-                <button title="save" className={pressed? "save": "save-hide"}><img src={save} /></button>
-                <button title="delete" className="del"><img src={del} /></button>
+                <button title={pressed? "cancel edit": "edit"} onClick={handleChange} className="edit"><img src={edit} alt="btn edit"/></button>
+                <button title="save" className={pressed? "save": "save-hide"}><img src={save} alt="btn save"/></button>
+                <button title="delete" className="del"><img src={del} alt="btn delete"/></button>
             </td>
         </tr>
     );

@@ -1,7 +1,6 @@
 @import "general";
 
 .card {
-    position: relative;
     display: grid;
     justify-content: center;
     margin: auto;
@@ -9,18 +8,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-
-    @media screen and (min-width: 1200px) {
-        height: 35vw;
-    }
-
-    @media screen and (max-width: 1199px) and (min-width: 1000px) {
-        height: 50vw;
-    }
-
-    @media screen and (max-width: 999px) {
-        height: 70vw;
-    }
 
     font-family: $cardFont;
 
@@ -87,7 +74,7 @@
             font-weight: bold;
             justify-self: center;
             margin-top: 10%;
-            width: 27%;
+            width: 38%;
             height: 55%;
             font-family: $cardFont;
             @media screen and (min-width: 801px) {
@@ -108,7 +95,7 @@
         }
 
         &__translate {
-            width: 27%;
+            width: 38%;
             height: 55%;
             margin-top: 10%;
             border: none;
@@ -140,18 +127,22 @@
                 font-size: 18px;
             }
 
-            @media screen and (max-width: 1023px) {
+            @media screen and (max-width: 1023px) and (min-width: 801px) {
                 width: 15vw;
                 height: 10vw;
                 font-size: 16px;
             }
 
             @media screen and (max-width: 800px) and (min-width: 501px) {
+                width: 17vw;
+                height: 12vw;
                 font-size: 14px;
             }
 
             @media screen and (max-width: 500px) {
-                font-size: 12px;
+                width: 19vw;
+                height: 14vw;
+                font-size: 14px;
             }
 
             border-radius: 10px;

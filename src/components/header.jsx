@@ -7,11 +7,11 @@ function Header() {
         <div className="header">
             <p className="header__text">Welcome to English club!</p>
             <button className="header__buttons">
-                <img src={all} />
+                <img src={all} alt="btn all words"/>
                 <p className="header__buttons__text">All words</p>
             </button>
             <button className="header__buttons">
-                <img src={cards} />
+                <img src={cards} alt="btn cards"/>
                 <p className="header__buttons__text">My cards</p>
             </button>
         </div>

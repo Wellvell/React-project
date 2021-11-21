@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './assets/styles/card.scss';
 
-function Card() {
+function Card(props, cardStyle) {
 
     const [pressed, setPressed] = useState(false);
 
@@ -10,15 +10,15 @@ function Card() {
     }
 
     return (
-        <div className="card">
+        <div className={"card" + `${cardStyle}`}>
             <div className="card__front">
-                <p className="card__front__word">butterfly</p>
-                <p className="card__front__transcription">[ ˈbʌtəflaɪ ]</p>
+                <p className="card__front__word">{props.word}</p>
+                <p className="card__front__transcription">{props.transcription}</p>
                 <button onClick={handleChange} className={(pressed ? "card__front__translate" : "card__front__button")}>{
-                    pressed? "бабочка": "Перевод"
+                    pressed? `${props.translate}`: "Перевод"
                 }</button>
-            </div>           
-            <div className="card__buttons-container">
+            </div>
+            {/* <div className="card__buttons-container">
                 <button className="card__buttons-container__btn1 card__buttons-container__buttons">
                     Don't know
                 </button>
@@ -28,7 +28,8 @@ function Card() {
                 <button className="card__buttons-container__btn3 card__buttons-container__buttons">
                     Know
                 </button>
-            </div>
+            </div>*/}           
+            
         </div>
     );
 }

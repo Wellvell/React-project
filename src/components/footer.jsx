@@ -6,7 +6,7 @@ function Footer() {
         <div className="footer">
             <p className="footer__h">Contact us:</p>
             <div className="footer__contact">
-                <img src={teleg} />
+                <img src={teleg} alt="telegram icon"/>
                 <p>@wellvvell</p>
             </div>
         </div>

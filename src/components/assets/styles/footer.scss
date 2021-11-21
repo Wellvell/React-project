@@ -1,9 +1,4 @@
-@import 'general';
-
-.App {
-    display: grid;
-    min-height: 100vh;
-}
+@import "general";
 
 .footer {
     width: 100%;
@@ -16,6 +11,18 @@
     color: $white;
     font-family: $headerFont;
     justify-content: center;
+
+    @media screen and (min-width: 1200px) {
+        height: 20vh;
+    }
+
+    @media screen and (max-width: 1199px) and (min-width: 1000px) {
+        height: 30vh;
+    }
+
+    @media screen and (max-width: 999px) {
+        height: 40vw;
+    }
 
     &__h {
         grid-row: 1/2;
