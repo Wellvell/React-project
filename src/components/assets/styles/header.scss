@@ -1,6 +1,9 @@
-@import 'general';
+@import "general";
 
 .header {
+    a {
+        text-decoration: none !important;
+    }
     @media screen and (min-width: 600px) {
         display: grid;
         grid-template-rows: 1fr;
@@ -30,6 +33,7 @@
     }
 
     align-items: center;
+    justify-items: center;
 
     &__text {
         @media screen and (min-width: 600px) {

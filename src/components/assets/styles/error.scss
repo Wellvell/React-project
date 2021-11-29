@@ -1,0 +1,14 @@
+@import "header";
+
+.error-container {
+    height: 50vh;
+    display: grid;
+    align-items: center;
+    font-family: $headerFont;
+    justify-content: center;
+    img {
+        height: auto;
+        width: 30%;
+        justify-self: center;
+    }
+}
