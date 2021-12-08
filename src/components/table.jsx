@@ -15,7 +15,8 @@ function Table() {
                     </tr>
                     {
                         words.map((word) =>
-                            <TableWords word={word.word}
+                            <TableWords key = {word.word}
+                                word={word.word}
                                 transcription={word.transcription}
                                 translate={word.translate}
                                 buttons={word.buttons}></TableWords>

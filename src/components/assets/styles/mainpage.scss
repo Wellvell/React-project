@@ -1,0 +1,26 @@
+@import "header";
+
+.main-container {
+    height: 50vh;
+    display: grid;
+    align-items: center;
+    font-family: $headerFont;
+    justify-content: center;
+    height: 68vh;
+
+    h1{
+        background: linear-gradient($blue, $orange);  /* подробнее про градиенты */ 
+        -webkit-background-clip: text;  /* подробнее про background-clip */ 
+        color: transparent;
+    }
+
+    p{
+        font-size: large;
+        margin-bottom: -5%;
+    }
+
+    img {
+        margin-bottom: 8%;
+        justify-self: center;
+    }
+}

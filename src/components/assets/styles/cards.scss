@@ -1,5 +1,10 @@
 @import "general";
 
+.counter{
+    font-size: large;
+    font-family: $cardFont;
+}
+
 .card-container {
     position: relative;
 

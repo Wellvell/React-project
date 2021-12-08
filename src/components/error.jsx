@@ -6,7 +6,7 @@ function Error(){
         <div className="error-container">
             <h1>Ошибка 404</h1>
             <p>Страница не найдена</p>
-            <img src={meme}></img>
+            <img src={meme} alt={"cat"}></img>
         </div>
     );
 }

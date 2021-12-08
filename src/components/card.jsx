@@ -15,6 +15,9 @@ function Card(props) {
 
     const handleChange = () => {
         setPressed(!pressed);
+        if (pressed !== true){
+            props.addToCard();
+        }
     }
 
     if (props.word === undefined){

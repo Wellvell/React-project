@@ -1,7 +1,7 @@
 import Card from './card';
 import { words } from './data';
 import './assets/styles/cards.scss';
-import {useState} from "react";
+import { useState, useEffect, useRef, forwardRef } from 'react';
 import arrowLeft from './assets/img/arrow-left.png';
 import arrowRight from './assets/img/arrow-right.png';
 import {CSSTransition} from 'react-transition-group'
@@ -9,22 +9,31 @@ import {CSSTransition} from 'react-transition-group'
 
 function Cards() {
 
-    const [index, setIndex] = useState(0)
+    const [index, setIndex] = useState(0);
     const [show, setShow] = useState(false);
+    const [itemsCard, setItemsCars] = useState(0);
+    const [arr, setArr] = useState([]);
 
     const slideLeft = () => {
         setIndex(index - 1);
-        setShow(!show)
+        setShow(!show);
     };
 
     const slideRight = () => {
         setIndex(index + 1);
-        setShow(!show)
+        setShow(!show);
     };
 
+    const addToCard = () => {
+        if (arr[index]!==1){
+            arr[index] = 1;
+            setItemsCars(itemsCard + 1);
+        }
+    }
 
     return (
         <div className="App">
+            <p className="counter"> Количество выученных слов: {itemsCard}</p> 
             <div className="card-container">
                 {index > 0 && (
                 <button className="leftBtn" onClick={() => slideLeft()}>
@@ -45,6 +54,7 @@ function Cards() {
                         translate={words[index].translate}
                         index={index+1}
                         length={words.length}
+                        addToCard={addToCard}
                     />
                     </CSSTransition>
                 )}

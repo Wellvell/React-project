@@ -10,14 +10,15 @@ import {
 import Table from './table';
 import Cards from './cards';
 import Error from './error';
+import MainPage from './mainPage';
 
 function Header() {
 
     return (
         <BrowserRouter>
             <div className="header">
-            <p className="header__text">Welcome to English club!</p>
-            <Link to="/"> <button className="header__buttons">
+                <Link to="/"> <p className="header__text">Welcome to English club!</p> </Link>
+            <Link to="/table"> <button className="header__buttons">
                 <img src={all} alt="btn all words"/>
                 <p className="header__buttons__text">All words</p>
             </button> </Link>
@@ -28,7 +29,8 @@ function Header() {
         </div>
         <Routes>
             <Route path="/game" element={<Cards/>}/>
-            <Route exact path="/" element={<Table/>}/>
+            <Route exact path="/table" element={<Table/>}/>
+            <Route exact path="/" element={<MainPage/>}/>
             <Route path="*" element={<Error/>}/>
         </Routes>
         </BrowserRouter>

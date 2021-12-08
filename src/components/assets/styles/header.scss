@@ -3,6 +3,7 @@
 .header {
     a {
         text-decoration: none !important;
+        color: $white !important;
     }
     @media screen and (min-width: 600px) {
         display: grid;
@@ -53,9 +54,8 @@
         padding: 10px;
         margin: 10px;
         border: none;
-
         &__text {
-            color: $white;
+            color: $white !important;
             font-family: $headerFont;
 
             @media screen and (min-width: 600px) {
