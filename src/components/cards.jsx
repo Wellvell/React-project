@@ -31,6 +31,9 @@ function Cards() {
         }
     }
 
+    const ref = useRef();
+    useEffect(() => ref.current.focus(), []);
+
     return (
         <div className="App">
             <p className="counter"> Количество выученных слов: {itemsCard}</p> 
@@ -45,7 +48,7 @@ function Cards() {
                     <img src={arrowRight} alt="arrow right"></img>
                 </button>
                 )}
-                {index > -1 && (
+                {index > -1 && (forwardRef(
                     <CSSTransition in={show} classNames="alert" timeout={300}>
                         <Card
                         key={words[index].word}
@@ -55,9 +58,10 @@ function Cards() {
                         index={index+1}
                         length={words.length}
                         addToCard={addToCard}
+                        ref={ref}
                     />
                     </CSSTransition>
-                )}
+                ))}
                 <div className="card-container__buttons-container">
                     <button className="card-container__buttons-container__btn1 card-container__buttons-container__buttons">
                         Don't know
