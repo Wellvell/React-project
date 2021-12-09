@@ -1,7 +1,7 @@
 import Card from './card';
 import { words } from './data';
 import './assets/styles/cards.scss';
-import { useState, useEffect, useRef, forwardRef } from 'react';
+import { useState, useRef} from 'react';
 import arrowLeft from './assets/img/arrow-left.png';
 import arrowRight from './assets/img/arrow-right.png';
 import {CSSTransition} from 'react-transition-group'
@@ -32,7 +32,6 @@ function Cards() {
     }
 
     const ref = useRef();
-    useEffect(() => ref.current.focus(), []);
 
     return (
         <div className="App">
@@ -48,7 +47,7 @@ function Cards() {
                     <img src={arrowRight} alt="arrow right"></img>
                 </button>
                 )}
-                {index > -1 && (forwardRef(
+                {index > -1 && (
                     <CSSTransition in={show} classNames="alert" timeout={300}>
                         <Card
                         key={words[index].word}
@@ -61,7 +60,7 @@ function Cards() {
                         ref={ref}
                     />
                     </CSSTransition>
-                ))}
+                )}
                 <div className="card-container__buttons-container">
                     <button className="card-container__buttons-container__btn1 card-container__buttons-container__buttons">
                         Don't know
