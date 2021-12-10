@@ -55,7 +55,6 @@ const Card = React.forwardRef((props, ref) => {
           >
             {pressed ? `${props.translate}` : "Перевод"}
           </button>
-          <button ref={ref}/> 
           <p className="card__front__numbers">
             {props.index}/{props.length}
           </p>

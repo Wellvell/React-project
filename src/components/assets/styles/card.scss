@@ -122,6 +122,10 @@
             }
         }
 
+        &_button:focus{
+            background-color: red;
+        }
+
         &__button:hover {
             background-color: $dark-violet;
             color: $white;
