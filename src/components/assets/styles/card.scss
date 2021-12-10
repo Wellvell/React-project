@@ -122,8 +122,8 @@
             }
         }
 
-        &_button:focus{
-            background-color: red;
+        &__button:focus {
+           border: 2px solid black !important;
         }
 
         &__button:hover {
