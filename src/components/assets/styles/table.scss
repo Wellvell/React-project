@@ -53,6 +53,11 @@
             outline: none;
         }
 
+        .input-block{
+            background-color: rgb(241, 197, 197);
+        }
+
+
         ::placeholder {
             color: $black;
         }
@@ -125,6 +130,13 @@
             .save-hide {
                 display: none;
             }
+
+            .save-block{
+                background: rgb(203, 229, 235);
+                pointer-events: none;
+            }
+
+            
 
             .del {
                 background: $orange;
