@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import "./assets/styles/card.scss";
 import React from "react";
+
 const Card = React.forwardRef((props, ref) => {
+
+  const [learned, setLearned] = useState(false);
+
   const [initialState, setInitialState] = useState({
     word: "server load",
     transcription: "",
@@ -9,16 +13,20 @@ const Card = React.forwardRef((props, ref) => {
     index: 0,
     lenght: 0,
   });
+
   const [pressed, setPressed] = useState(false);
   useEffect(() => {
     ref.current.focus();
   }, []);
+
   const handleChange = () => {
     setPressed(!pressed);
-    if (pressed !== true) {
+    if (!learned) {
       props.addToCard();
     }
+    setLearned(true);
   };
+
   if (props.word === undefined) {
     return (
       <div className={"card"}>
