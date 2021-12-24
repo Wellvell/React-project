@@ -24,68 +24,69 @@ function TableWords(props) {
         setPressed(!pressed);
     }
 
-    const handleInputChange = (e) =>{
+    const handleInputChange = (e) => {
         const target = e.target;
         const name = target.name;
         const value = target.value;
-        if (value.length === 0){
+        if (value.length === 0) {
             setValidation(false);
         }
-        else{
+        else {
             setValidation(true)
         }
         if (name === "word")
             setPropsWordVal(value)
         else if (name === "transcription")
             setPropsTranscriptionVal(value)
-            else 
-                setPropsTranslateVal(value)
-                
+        else
+            setPropsTranslateVal(value)
+
     }
 
-    useEffect (() => {
-        if (pressed && validation){
+    useEffect(() => {
+        if (pressed && validation) {
             setClassButton("save");
             setClassInput("");
         }
-        else if (pressed && (validation === false)){
+        else if (pressed && (validation === false)) {
             setClassButton("save-block");
             setClassInput("input-block");
         }
-        else{
+        else {
             setClassButton("save-hide");
         }
-        
+
     }, [pressed, validation])
 
     const putForm = () => {
-        let flag1;
-        let flag2;
-        let flag3;
+        let flag = 1;
         let wordTest = /^[a-zA-Z\s]+$/;
         let TranscriptionTest = /[^0-9]/;
         let TranslateTest = /^[А-Яа-яЁё\s]+$/;
 
-    
+
         if (wordTest.test(propsWordVal))
-                flag1 = 1;
-        else
+            flag = flag * 1;
+        else {
+            flag = 0;
             alert("Поле Word заполнено некорректно! Убедитесь, что вы вводите символы латинице.")
-        
+        }
 
         if (TranscriptionTest.test(propsTranscriptionVal))
-                flag2 = 1;
-        else 
+            flag = flag * 1;
+        else {
+            flag = 0;
             alert("Поле Transcription заполнено некорректно! Убедитесь, что вы не вводите цифры.")
-        
-   
-        if (TranslateTest.test(propsTranslateVal))
-                flag3 = 1;
-        else
-            alert("Поле Translate заполнено некорректно! Убедитесь, что вы вводите символы кириллице.")
-            
+        }
 
-        if (flag1 && flag2 && flag3){
+        if (TranslateTest.test(propsTranslateVal))
+            flag = flag * 1;
+        else {
+            flag = 0;
+            alert("Поле Translate заполнено некорректно! Убедитесь, что вы вводите символы кириллице.")
+        }
+
+        if (flag === 1) {
             setPropsWord(propsWordVal);
             setPropsTranscription(propsTranscriptionVal);
             setPropsTranslate(propsTranslateVal);
@@ -97,13 +98,13 @@ function TableWords(props) {
 
     return (
         <tr>
-            <td>{pressed? <input className={`${classInput}`} onChange={handleInputChange} name="word" placeholder={propsWordVal} />: <input readOnly className="input" value={propsWord} />}</td>
-            <td>{pressed? <input className={`${classInput}`} onChange={handleInputChange} name="transcription" placeholder={propsTranscriptionVal} />: <input readOnly className="input" value={propsTranscription} />}</td>
-            <td>{pressed? <input className={`${classInput}`} onChange={handleInputChange} name="translate" placeholder={propsTranslateVal} />: <input readOnly className="input" value={propsTranslate} />}</td>
+            <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="word" value={propsWordVal} /> : <input readOnly className="input" value={propsWord} />}</td>
+            <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="transcription" value={propsTranscriptionVal} /> : <input readOnly className="input" value={propsTranscription} />}</td>
+            <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="translate" value={propsTranslateVal} /> : <input readOnly className="input" value={propsTranslate} />}</td>
             <td className="buttons">
-                <button title={pressed? "cancel edit": "edit"} onClick={handleChange} className="edit"><img src={edit} alt="btn edit"/></button>
-                <button title="save" onClick={putForm} className={`${classButton}`}><img src={save} alt="btn save"/></button>
-                <button title="delete" className="del"><img src={del} alt="btn delete"/></button>
+                <button title={pressed ? "cancel edit" : "edit"} onClick={handleChange} className="edit"><img src={edit} alt="btn edit" /></button>
+                <button title="save" onClick={putForm} className={`${classButton}`}><img src={save} alt="btn save" /></button>
+                <button title="delete" className="del"><img src={del} alt="btn delete" /></button>
             </td>
         </tr>
     );
