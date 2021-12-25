@@ -17,6 +17,7 @@ import DataContext from './context';
 function Header() {
 
     const { data, setData } = useContext(DataContext);
+
     return (
         <BrowserRouter>
             <div className="header">
