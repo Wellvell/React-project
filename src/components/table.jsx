@@ -1,8 +1,11 @@
 import TableWords from './tableWords';
 import './assets/styles/table.scss';
-import { words } from './data';
+import { useState } from 'react';
 
-function Table() {
+function Table(props) {
+
+    const [data, setData] = useState(props.data)
+
     return (
         <div className="table">
             <table>
@@ -14,11 +17,11 @@ function Table() {
                         <th className="buttons-col"></th>
                     </tr>
                     {
-                        words.map((word) =>
-                            <TableWords key = {word.word}
-                                word={word.word}
+                        data.map((word) =>
+                            <TableWords key={word.id}
+                                word={word.english}
                                 transcription={word.transcription}
-                                translate={word.translate}
+                                translate={word.russian}
                                 buttons={word.buttons}></TableWords>
                         )
                     }
