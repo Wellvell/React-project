@@ -15,6 +15,7 @@ const Card = React.forwardRef((props, ref) => {
   });
 
   const [pressed, setPressed] = useState(false);
+
   useEffect(() => {
     ref.current.focus();
   }, []);
