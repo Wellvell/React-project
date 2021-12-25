@@ -1,14 +1,11 @@
 import TableWords from './tableWords';
 import './assets/styles/table.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useContext } from 'react';
+import DataContext from './context';
 
-function Table(props) {
+function Table() {
 
-    const [data, setData] = useState(props.data)
-
-    useEffect(() => {
-        setData(data);
-    }, [data])
+    const { data, setData } = useContext(DataContext);
 
     return (
         <div className="table">
@@ -27,6 +24,7 @@ function Table(props) {
                                 word={word.english}
                                 transcription={word.transcription}
                                 translate={word.russian}
+                                teg={word.tags}
                                 buttons={word.buttons}
                                 index={data[index + 1]}>
                             </TableWords>

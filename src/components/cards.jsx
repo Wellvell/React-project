@@ -4,16 +4,17 @@ import { useState, useRef } from 'react';
 import arrowLeft from './assets/img/arrow-left.png';
 import arrowRight from './assets/img/arrow-right.png';
 import { CSSTransition } from 'react-transition-group'
-import { Outlet } from 'react-router-dom';
+import { useEffect, useContext } from 'react';
+import DataContext from './context';
 
 
-function Cards(props) {
+function Cards() {
 
     const [index, setIndex] = useState(0);
     const [show, setShow] = useState(false);
     const [itemsCard, setItemsCars] = useState(0);
     const [arr, setArr] = useState([]);
-    const [data, setData] = useState(props.data)
+    const { data, setData } = useContext(DataContext);
 
     const slideLeft = () => {
         setIndex(index - 1);

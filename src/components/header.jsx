@@ -11,13 +11,11 @@ import Table from './table';
 import Cards from './cards';
 import Error from './error';
 import MainPage from './mainPage';
-import { useContext, useState } from 'react';
-import DataContext from './context';
+import { useState } from 'react';
 import meme from './assets/img/grumpy-cat.png';
 
 function Header() {
 
-    const { data, setData } = useContext(DataContext);
     const [textH, setTextH] = useState("Ошибка 404");
     const [textP, setTextP] = useState("Страница не найдена");
 
@@ -35,8 +33,8 @@ function Header() {
                 </button> </Link>
             </div>
             <Routes>
-                <Route path="/game" element={<Cards data={data} />} />
-                <Route exact path="/table" element={<Table data={data} />} />
+                <Route path="/game" element={<Cards />} />
+                <Route exact path="/table" element={<Table />} />
                 <Route exact path="/" element={<MainPage />} />
                 <Route path="*" element={<Error img={meme} header={textH} p={textP} />} />
             </Routes>

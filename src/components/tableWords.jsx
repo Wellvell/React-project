@@ -11,6 +11,7 @@ function TableWords(props) {
     const [propsTranscription, setPropsTranscription] = useState(props.transcription);
     const [propsTranslate, setPropsTranslate] = useState(props.translate);
 
+
     const [propsWordVal, setPropsWordVal] = useState(props.word);
     const [propsTranscriptionVal, setPropsTranscriptionVal] = useState(props.transcription);
     const [propsTranslateVal, setPropsTranslateVal] = useState(props.translate);
@@ -18,6 +19,8 @@ function TableWords(props) {
     const [validation, setValidation] = useState(true);
     const [classButton, setClassButton] = useState("save-hide");
     const [classInput, setClassInput] = useState("");
+
+    const [canUpdate, setCanUpdate] = useState(false);
 
     const handleChange = () => {
         setPressed(!pressed);
@@ -57,7 +60,7 @@ function TableWords(props) {
 
     }, [pressed, validation])
 
-    const putForm = () => {
+    function checkForm() {
         let flag = 1;
         let wordTest = /^[a-zA-Z\s]+$/;
         let TranscriptionTest = /[^0-9]/;
@@ -84,6 +87,11 @@ function TableWords(props) {
             flag = 0;
             alert("Поле Translate заполнено некорректно! Убедитесь, что вы вводите символы кириллице.")
         }
+        return flag;
+    }
+
+    const putForm = () => {
+        let flag = checkForm()
 
         if (flag === 1) {
             setPropsWord(propsWordVal);
@@ -91,7 +99,7 @@ function TableWords(props) {
             setPropsTranslate(propsTranslateVal);
             setPressed(false);
             updateWord()
-
+            setCanUpdate(true);
 
             console.log(`word: ${propsWordVal}, transcription: ${propsTranscriptionVal}, translate: ${propsTranslateVal}`);
         }
@@ -102,18 +110,17 @@ function TableWords(props) {
         let english = propsWordVal;
         let transcription = propsTranscriptionVal;
         let russian = propsTranslateVal;
-        const word = { english, transcription, russian }
+        let tags = props.teg
+        if (tags.length === 0) {
+            tags = prompt("Введите тег для слова");
+        }
+        const word = { english, transcription, russian, tags }
         const options = {
             method: 'POST',
-            headers: {
-                'Contept-Type': 'application/json'
-            },
             body: JSON.stringify(word)
         };
-        fetch(`/api/words/${id}/update`, options).then(response => {
-            console.log(response.json());
-            console.log(response);
-        })
+        fetch(`/api/words/${id}/update`, options).then(response => response.json())
+            .then(data => console.log(data));
         alert("Слово изменено!")
     }
 
@@ -125,35 +132,40 @@ function TableWords(props) {
                 'Contept-Type': 'application/json'
             },
         };
-        fetch(`/api/words/${id}/delete`, options).then(response => {
-            console.log(response);
-        })
+        fetch(`/api/words/${id}/delete`, options).then(response => response.json())
+            .then(data => console.log(data));
         alert("Слово удалено!")
     }
 
     const addWord = () => {
-        let id = props.id + 1;
-        let english = propsWordVal;
-        let transcription = propsTranscriptionVal;
-        let russian = propsTranslateVal;
-        if (english === propsWord && transcription === propsTranscription && russian === propsTranslate) {
-            alert("Такое слово уже существует!")
+        if (canUpdate) {
+            let id = props.id + 1;
+            let english = propsWordVal;
+            let transcription = propsTranscriptionVal;
+            let russian = propsTranslateVal;
+            if (english === propsWord && transcription === propsTranscription && russian === propsTranslate) {
+                alert("Такое слово уже существует!")
+            }
+            else {
+                const word = { id, english, transcription, russian }
+                console.log(word);
+                const options = {
+                    method: 'POST',
+                    headers: {
+                        'Contept-Type': 'application/json'
+                    },
+                    body: JSON.stringify(word)
+                };
+                fetch(`/api/words/add`, options).then(response => response.json())
+                    .then(data => console.log(data));
+                alert("Слово добавлено!")
+                setCanUpdate(false)
+            }
         }
         else {
-            const word = { id, english, transcription, russian }
-            console.log(word);
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Contept-Type': 'application/json'
-                },
-                body: JSON.stringify(word)
-            };
-            fetch(`/api/words/add`, options).then(response => {
-                console.log(response);
-            })
-            alert("Слово добавлено!")
+            alert("Проверть корректность заполнения полей!")
         }
+
     }
 
     if (!props.index) {
