@@ -20,8 +20,6 @@ function TableWords(props) {
     const [classButton, setClassButton] = useState("save-hide");
     const [classInput, setClassInput] = useState("");
 
-    const [canUpdate, setCanUpdate] = useState(false);
-
     const handleChange = () => {
         setPressed(!pressed);
     }
@@ -60,46 +58,44 @@ function TableWords(props) {
 
     }, [pressed, validation])
 
-    function checkForm() {
+    function checkForm(wVal, scripV, tVal) {
         let flag = 1;
         let wordTest = /^[a-zA-Z\s]+$/;
         let TranscriptionTest = /[^0-9]/;
         let TranslateTest = /^[А-Яа-яЁё\s]+$/;
 
 
-        if (wordTest.test(propsWordVal))
+        if (wordTest.test(wVal))
             flag = flag * 1;
         else {
             flag = 0;
-            alert("Поле Word заполнено некорректно! Убедитесь, что вы вводите символы латинице.")
+            alert("Поле Word заполнено некорректно! Убедитесь, что вы вводите символы на латинице.")
         }
 
-        if (TranscriptionTest.test(propsTranscriptionVal))
+        if (TranscriptionTest.test(scripV))
             flag = flag * 1;
         else {
             flag = 0;
             alert("Поле Transcription заполнено некорректно! Убедитесь, что вы не вводите цифры.")
         }
 
-        if (TranslateTest.test(propsTranslateVal))
+        if (TranslateTest.test(tVal))
             flag = flag * 1;
         else {
             flag = 0;
-            alert("Поле Translate заполнено некорректно! Убедитесь, что вы вводите символы кириллице.")
+            alert("Поле Translate заполнено некорректно! Убедитесь, что вы вводите символы на кириллице.")
         }
         return flag;
     }
 
     const putForm = () => {
-        let flag = checkForm()
-
+        let flag = checkForm(propsWordVal, propsTranscriptionVal, propsTranslateVal)
         if (flag === 1) {
             setPropsWord(propsWordVal);
             setPropsTranscription(propsTranscriptionVal);
             setPropsTranslate(propsTranslateVal);
             setPressed(false);
             updateWord()
-            setCanUpdate(true);
 
             console.log(`word: ${propsWordVal}, transcription: ${propsTranscriptionVal}, translate: ${propsTranslateVal}`);
         }
@@ -113,15 +109,34 @@ function TableWords(props) {
         let tags = props.teg
         if (tags.length === 0) {
             tags = prompt("Введите тег для слова");
+            let tagTest = /^[А-Яа-яЁё\s]+$/;
+            if (tagTest.test(tags)) {
+                const word = { english, transcription, russian, tags }
+                const options = {
+                    method: 'POST',
+                    body: JSON.stringify(word)
+                };
+                fetch(`/api/words/${id}/update`, options).then(response => response.json())
+                    .then(data => console.log(data));
+                alert("Слово изменено!")
+            }
+            else {
+                alert("Убедитесь, что вы вводите символы на кириллице.")
+            }
         }
-        const word = { english, transcription, russian, tags }
-        const options = {
-            method: 'POST',
-            body: JSON.stringify(word)
-        };
-        fetch(`/api/words/${id}/update`, options).then(response => response.json())
-            .then(data => console.log(data));
-        alert("Слово изменено!")
+        else {
+            const word = { english, transcription, russian, tags }
+            const options = {
+                method: 'POST',
+                body: JSON.stringify(word)
+            };
+            fetch(`/api/words/${id}/update`, options).then(response => response.json())
+                .then(data => console.log(data));
+            alert("Слово изменено!")
+        }
+
+
+
     }
 
     const handleDelte = () => {
@@ -138,7 +153,8 @@ function TableWords(props) {
     }
 
     const addWord = () => {
-        if (canUpdate) {
+        let flag = checkForm(propsWordVal, propsTranscriptionVal, propsTranslateVal)
+        if (flag) {
             let id = props.id + 1;
             let english = propsWordVal;
             let transcription = propsTranscriptionVal;
@@ -147,23 +163,27 @@ function TableWords(props) {
                 alert("Такое слово уже существует!")
             }
             else {
-                const word = { id, english, transcription, russian }
-                console.log(word);
-                const options = {
-                    method: 'POST',
-                    headers: {
-                        'Contept-Type': 'application/json'
-                    },
-                    body: JSON.stringify(word)
-                };
-                fetch(`/api/words/add`, options).then(response => response.json())
-                    .then(data => console.log(data));
-                alert("Слово добавлено!")
-                setCanUpdate(false)
+                let tags = prompt("Введите тег для слова");
+                let tagTest = /^[А-Яа-яЁё\s]+$/;
+                if (tagTest.test(tags)) {
+                    const word = { id, english, transcription, russian, tags }
+                    console.log(word);
+                    const options = {
+                        method: 'POST',
+                        headers: {
+                            'Contept-Type': 'application/json'
+                        },
+                        body: JSON.stringify(word)
+                    };
+                    fetch(`/api/words/add`, options).then(response => response.json())
+                        .then(data => console.log(data));
+                    alert("Слово добавлено!")
+                }
+                else {
+                    alert("Убедитесь, что вы вводите символы на кириллице.")
+                }
+
             }
-        }
-        else {
-            alert("Проверть корректность заполнения полей!")
         }
 
     }

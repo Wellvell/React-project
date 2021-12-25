@@ -1,6 +1,6 @@
 import TableWords from './tableWords';
 import './assets/styles/table.scss';
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import DataContext from './context';
 
 function Table() {
