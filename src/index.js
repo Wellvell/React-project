@@ -11,6 +11,20 @@ function Main(){
   const [loading, setloading] = useState(false);
   const [getError, setGetError] = useState(null);
 
+  const removeWord = id => {
+    setData(data.filter(word => {
+      return word.id !== id
+    }))
+  }
+
+  const updateWord = id => {
+    setData(data.map(word => {
+      if (word.id === id){
+        
+      }
+    }))
+  }
+
   useEffect(() => {
     setloading(true);
     fetch('/api/words')
