@@ -11,13 +11,12 @@ import Table from './table';
 import Cards from './cards';
 import Error from './error';
 import MainPage from './mainPage';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import DataContext from './context';
 
 function Header() {
 
     const { data, setData } = useContext(DataContext);
-    console.log(data)
 
     return (
         <BrowserRouter>
