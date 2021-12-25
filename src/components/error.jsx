@@ -1,12 +1,12 @@
 import './assets/styles/error.scss';
-import meme from './assets/img/grumpy-cat.png';
-function Error(){
-    
-    return(
+
+function Error(props) {
+
+    return (
         <div className="error-container">
-            <h1>Ошибка 404</h1>
-            <p>Страница не найдена</p>
-            <img src={meme} alt={"cat"}></img>
+            <h1>{props.header}</h1>
+            <p>{props.p}</p>
+            <img src={props.img} alt={"cat"}></img>
         </div>
     );
 }

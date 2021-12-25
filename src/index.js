@@ -4,12 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import DataContext from './components/context'
+import meme from './components/assets/img/cover4.jpg'
+import Problem from './components/error';
+import Loading from './components/loading'
+
 
 function Main(){
 
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(false);
   const [getError, setGetError] = useState(null);
+  const [errorStatus, getErrorStatus] = useState("");
 
   useEffect(() => {
     setloading(true);
@@ -19,6 +24,7 @@ function Main(){
         return response.json();
       } 
       else {
+        getErrorStatus(response.status)
        throw new Error('Something went wrong ...');
       }})
     .then((response) => {
@@ -29,16 +35,16 @@ function Main(){
       setloading(false);
     });
   },[])
-
   if (getError){
+    console.log(getError)
     return(
-      <p>{getError.message}</p>
+      <Problem img={meme} header={errorStatus} p={getError.message}/>
     )
   }
 
   if (loading){
     return (
-      <p>Loading....</p>
+      <Loading/>
     )
   }
   else {
