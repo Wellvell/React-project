@@ -161,78 +161,18 @@ function TableWords(props) {
         alert("Слово удалено!")
     }
 
-    const addWord = () => {
-        let flag = checkForm(propsWordVal, propsTranscriptionVal, propsTranslateVal)
-        if (flag) {
-            let id = props.id + 1;
-            let english = propsWordVal;
-            let transcription = propsTranscriptionVal;
-            let russian = propsTranslateVal;
-            if (english === propsWord && transcription === propsTranscription && russian === propsTranslate) {
-                alert("Такое слово уже существует!")
-            }
-            else {
-                let tags = prompt("Введите тег для слова");
-                let tagTest = /^[А-Яа-яЁё\s]+$/;
-                if (tagTest.test(tags)) {
-                    const word = { id, english, transcription, russian, tags }
-                    console.log(word);
-                    const options = {
-                        method: 'POST',
-                        headers: {
-                            'Contept-Type': 'application/json'
-                        },
-                        body: JSON.stringify(word)
-                    };
-                    fetch(`/api/words/add`, options).then(response => response.json())
-                        .then(data => {
-                            console.log(data)
-                            props.addData(id, data)
-                        });
-                    alert("Слово добавлено!")
-                    setPropsWordVal(propsWord);
-                    setPropsTranscriptionVal(propsTranscription);
-                    setPropsTranslateVal(propsTranslate);
-                }
-                else {
-                    alert("Убедитесь, что вы вводите символы на кириллице.")
-                }
-
-            }
-        }
-
-    }
-
-    if (!props.index) {
-        return (
-            <tr>
-                <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="word" value={propsWordVal} /> : <input readOnly className="input" value={propsWord} />}</td>
-                <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="transcription" value={propsTranscriptionVal} /> : <input readOnly className="input" value={propsTranscription} />}</td>
-                <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="translate" value={propsTranslateVal} /> : <input readOnly className="input" value={propsTranslate} />}</td>
-                <td className="buttons">
-                    <button title={pressed ? "cancel edit" : "edit"} onClick={handleChange} className="edit"><img src={edit} alt="btn edit" /></button>
-                    <button title="save" onClick={putForm} className={`${classButton}`}><img src={save} alt="btn save" /></button>
-                    <button onClick={addWord} className={`${classButton}`}> Add new word </button>
-                    <button title="delete" className="del" onClick={handleDelte} ><img src={del} alt="btn delete" /></button>
-                </td>
-
-            </tr>
-        );
-    }
-    else {
-        return (
-            <tr>
-                <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="word" value={propsWordVal} /> : <input readOnly className="input" value={propsWord} />}</td>
-                <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="transcription" value={propsTranscriptionVal} /> : <input readOnly className="input" value={propsTranscription} />}</td>
-                <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="translate" value={propsTranslateVal} /> : <input readOnly className="input" value={propsTranslate} />}</td>
-                <td className="buttons">
-                    <button title={pressed ? "cancel edit" : "edit"} onClick={handleChange} className="edit"><img src={edit} alt="btn edit" /></button>
-                    <button title="save" onClick={putForm} className={`${classButton}`}><img src={save} alt="btn save" /></button>
-                    <button title="delete" className="del" onClick={handleDelte}><img src={del} alt="btn delete" /></button>
-                </td>
-            </tr>
-        );
-    }
+    return (
+        <tr>
+            <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="word" value={propsWordVal} /> : <input readOnly className="input" value={propsWord} />}</td>
+            <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="transcription" value={propsTranscriptionVal} /> : <input readOnly className="input" value={propsTranscription} />}</td>
+            <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="translate" value={propsTranslateVal} /> : <input readOnly className="input" value={propsTranslate} />}</td>
+            <td className="buttons">
+                <button title={pressed ? "cancel edit" : "edit"} onClick={handleChange} className="edit"><img src={edit} alt="btn edit" /></button>
+                <button title="save" onClick={putForm} className={`${classButton}`}><img src={save} alt="btn save" /></button>
+                <button title="delete" className="del" onClick={handleDelte}><img src={del} alt="btn delete" /></button>
+            </td>
+        </tr>
+    );
 }
 
 export default TableWords;
