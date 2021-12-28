@@ -117,7 +117,10 @@ function TableWords(props) {
                     body: JSON.stringify(word)
                 };
                 fetch(`/api/words/${id}/update`, options).then(response => response.json())
-                    .then(data => console.log(data));
+                    .then(data => {
+                        console.log(data)
+                        props.updateData(id);
+                    });
                 alert("Слово изменено!")
             }
             else {
@@ -131,7 +134,10 @@ function TableWords(props) {
                 body: JSON.stringify(word)
             };
             fetch(`/api/words/${id}/update`, options).then(response => response.json())
-                .then(data => console.log(data));
+                .then(data => {
+                    console.log(data)
+                    props.updateData(id)
+                });
             alert("Слово изменено!")
         }
 
@@ -148,7 +154,10 @@ function TableWords(props) {
             },
         };
         fetch(`/api/words/${id}/delete`, options).then(response => response.json())
-            .then(data => console.log(data));
+            .then(data => {
+                console.log(data)
+                props.deleteData(id)
+            });
         alert("Слово удалено!")
     }
 
@@ -176,8 +185,14 @@ function TableWords(props) {
                         body: JSON.stringify(word)
                     };
                     fetch(`/api/words/add`, options).then(response => response.json())
-                        .then(data => console.log(data));
+                        .then(data => {
+                            console.log(data)
+                            props.addData(id, data)
+                        });
                     alert("Слово добавлено!")
+                    setPropsWordVal(propsWord);
+                    setPropsTranscriptionVal(propsTranscription);
+                    setPropsTranslateVal(propsTranslate);
                 }
                 else {
                     alert("Убедитесь, что вы вводите символы на кириллице.")
