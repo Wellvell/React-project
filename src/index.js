@@ -32,7 +32,9 @@ function Main(){
         .then(data => {
         });
       alert("Слово добавлено!")
-      setData(data.unshift(newWord))
+      const filteredArray = data.filter((word) => word.id !== newWord.id);
+      filteredArray.unshift(newWord)
+      setData(filteredArray);
     }
     else {
       alert("Убедитесь, что вы вводите символы на кириллице.")

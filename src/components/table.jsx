@@ -30,7 +30,6 @@ function Table() {
     }
     else {
 
-        console.log(data)
 
         return (
             <div>
