@@ -70,40 +70,29 @@ function AddWordForm(props) {
     }
 
     const checkWords = (len) => {
-        let flag = false;
+        let flag = 0;
         let i = 0;
         while (i < len && !flag) {
             if (props.data[i].english === word)
-                flag = true;
+                flag = flag + 1;
             i++;
         }
 
-        if (!flag) {
-            i = 0;
-            while (i < len && !flag) {
-                if (props.data[i].transcription === transcript)
-                    flag = true;
-                i++;
-            }
-
-            if (!flag) {
-                i = 0;
-                while (i < len && !flag) {
-                    if (props.data[i].russian === translate)
-                        flag = true;
-                    i++;
-                }
-                return flag;
-
-            }
-            else {
-                return flag
-            }
-
+        i = 0;
+        while (i < len && !flag) {
+            if (props.data[i].transcription === transcript)
+                flag = flag + 1;
+            i++;
         }
-        else {
-            return flag
+
+        i = 0;
+        while (i < len && !flag) {
+            if (props.data[i].russian === translate)
+                flag = flag + 1;
+            i++;
         }
+        return flag === 3;
+
     }
 
     const addWord = () => {
