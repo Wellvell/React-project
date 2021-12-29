@@ -109,7 +109,7 @@ function AddWordForm(props) {
     const addWord = () => {
         let flag = checkForm(word, transcript, translate)
         if (flag) {
-            let len = Object.keys(props.data).length;
+            let len = props.data.length;
             let id = props.data[len - 1].id + 1;
             let english = word;
             let transcription = transcript;
