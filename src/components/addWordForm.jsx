@@ -109,7 +109,7 @@ function AddWordForm(props) {
     const addWord = () => {
         let flag = checkForm(word, transcript, translate)
         if (flag) {
-            let len = Object.keys(props.data).length;
+            let len = props.data.length;
             let id = props.data[len - 1].id + 1;
             let english = word;
             let transcription = transcript;
@@ -119,31 +119,11 @@ function AddWordForm(props) {
                 alert("Такое слово уже существует!")
             }
             else {
-                let tags = prompt("Введите тег для слова");
-                let tagTest = /^[А-Яа-яЁё\s]+$/;
-                if (tagTest.test(tags)) {
-                    const word = { id, english, transcription, russian, tags }
-                    const options = {
-                        method: 'POST',
-                        headers: {
-                            'Contept-Type': 'application/json'
-                        },
-                        body: JSON.stringify(word)
-                    };
-                    fetch(`/api/words/add`, options).then(response => response.json())
-                        .then(data => {
-                            console.log(data)
-                            props.addData(id, data)
-                        });
-                    alert("Слово добавлено!")
-                }
-                else {
-                    alert("Убедитесь, что вы вводите символы на кириллице.")
-                }
-
+                let tags = "";
+                const word = { id, english, transcription, russian, tags }
+                props.handlerAddWord(word);
             }
         }
-
     }
 
     return (

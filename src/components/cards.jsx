@@ -4,8 +4,11 @@ import { useState, useRef } from 'react';
 import arrowLeft from './assets/img/arrow-left.png';
 import arrowRight from './assets/img/arrow-right.png';
 import { CSSTransition } from 'react-transition-group'
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import DataContext from './context';
+import Loading from './loading'
+import meme from './assets/img/cover4.jpg'
+import Problem from './error';
 
 
 function Cards() {
@@ -14,7 +17,7 @@ function Cards() {
     const [show, setShow] = useState(false);
     const [itemsCard, setItemsCars] = useState(0);
     const [arr, setArr] = useState([]);
-    const { data, setData } = useContext(DataContext);
+    const { data, errorStatus, getError, loading } = useContext(DataContext);
 
     const slideLeft = () => {
         setIndex(index - 1);
@@ -35,9 +38,12 @@ function Cards() {
 
     const ref = useRef();
 
-    console.log(data)
-
-    if (data.length !== 0) {
+    if (getError) {
+        return (
+            <Problem img={meme} header={errorStatus} p={getError} />
+        )
+    }
+    else if (data.length !== 0) {
         return (
             <div className="App">
                 <p className="counter"> Количество выученных слов: {itemsCard}</p>
@@ -83,7 +89,7 @@ function Cards() {
     }
     else {
         return (
-            <p>ожидается загрузка</p>
+            <Loading />
         )
     }
 }

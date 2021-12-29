@@ -107,58 +107,13 @@ function TableWords(props) {
         let transcription = propsTranscriptionVal;
         let russian = propsTranslateVal;
         let tags = props.teg
-        if (tags.length === 0) {
-            tags = prompt("Введите тег для слова");
-            let tagTest = /^[А-Яа-яЁё\s]+$/;
-            if (tagTest.test(tags)) {
-                const word = { english, transcription, russian, tags }
-                const options = {
-                    method: 'POST',
-                    body: JSON.stringify(word)
-                };
-                fetch(`/api/words/${id}/update`, options).then(response => response.json())
-                    .then(data => {
-                        console.log(data)
-                        props.updateData(id);
-                    });
-                alert("Слово изменено!")
-            }
-            else {
-                alert("Убедитесь, что вы вводите символы на кириллице.")
-            }
-        }
-        else {
-            const word = { english, transcription, russian, tags }
-            const options = {
-                method: 'POST',
-                body: JSON.stringify(word)
-            };
-            fetch(`/api/words/${id}/update`, options).then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    props.updateData(id)
-                });
-            alert("Слово изменено!")
-        }
-
-
-
+        const word = { id, english, transcription, russian, tags };
+        props.handlerInputSave(word);
     }
 
     const handleDelte = () => {
         let id = props.id;
-        const options = {
-            method: 'POST',
-            headers: {
-                'Contept-Type': 'application/json'
-            },
-        };
-        fetch(`/api/words/${id}/delete`, options).then(response => response.json())
-            .then(data => {
-                console.log(data)
-                props.deleteData(id)
-            });
-        alert("Слово удалено!")
+        props.handlerDelete(id);
     }
 
     return (
