@@ -1,0 +1,25 @@
+@import "general";
+
+.hide-form{
+    display: none;
+}
+
+.form{
+    margin-top: 1vw;
+
+    input{
+        font-family: $tableFont;
+        font-size: large;
+    }
+
+    button{
+        margin-left: 1vw;
+        font-family: $tableFont;
+        font-size: large;
+    }
+
+    .input-block{
+        background-color: rgb(241, 197, 197);
+    }
+    
+}

@@ -1,5 +1,23 @@
 @import "general";
 
+.add-btn{
+    cursor: pointer;
+    border-radius: 20px;
+    transition: 0.2s linear;
+    border: none;
+    padding: 10px 10px;
+    width: 100px;
+    margin-top: 1vw;
+    background: $blue;
+    font-family: $tableFont;
+    color: white;
+    font-size: 15px;
+}
+
+.add-btn:hover {
+    box-shadow: 0 0 0 2px $white, 0 0 0 4px $blue;
+}
+
 .table {
     display: flex;
     justify-content: center;
