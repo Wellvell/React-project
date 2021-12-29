@@ -12,16 +12,16 @@ function TableWords(props) {
     const [propsTranslate, setPropsTranslate] = useState(props.translate);
 
 
-    const [propsWordVal, setPropsWordVal] = useState(props.word);
-    const [propsTranscriptionVal, setPropsTranscriptionVal] = useState(props.transcription);
-    const [propsTranslateVal, setPropsTranslateVal] = useState(props.translate);
-
     const [validation, setValidation] = useState(true);
     const [classButton, setClassButton] = useState("save-hide");
     const [classInput, setClassInput] = useState("");
 
     const handleChange = () => {
         setPressed(!pressed);
+        setPropsWord(props.word);
+        setPropsTranscription(props.transcription)
+        setPropsTranslate(props.translate)
+
     }
 
     const handleInputChange = (e) => {
@@ -35,11 +35,11 @@ function TableWords(props) {
             setValidation(true)
         }
         if (name === "word")
-            setPropsWordVal(value)
+            setPropsWord(value)
         else if (name === "transcription")
-            setPropsTranscriptionVal(value)
+            setPropsTranscription(value)
         else
-            setPropsTranslateVal(value)
+            setPropsTranslate(value)
 
     }
 
@@ -89,24 +89,24 @@ function TableWords(props) {
     }
 
     const putForm = () => {
-        let flag = checkForm(propsWordVal, propsTranscriptionVal, propsTranslateVal)
+        let flag = checkForm(propsWord, propsTranscription, propsTranslate)
         if (flag === 1) {
-            setPropsWord(propsWordVal);
-            setPropsTranscription(propsTranscriptionVal);
-            setPropsTranslate(propsTranslateVal);
+            setPropsWord(propsWord);
+            setPropsTranscription(propsTranscription);
+            setPropsTranslate(propsTranslate);
             setPressed(false);
             updateWord()
 
-            console.log(`word: ${propsWordVal}, transcription: ${propsTranscriptionVal}, translate: ${propsTranslateVal}`);
+            console.log(`word: ${propsWord}, transcription: ${propsTranscription}, translate: ${propsTranslate}`);
         }
     }
 
     const updateWord = () => {
         let id = props.id;
-        let english = propsWordVal;
-        let transcription = propsTranscriptionVal;
-        let russian = propsTranslateVal;
-        let tags = props.teg
+        let english = propsWord;
+        let transcription = propsTranscription;
+        let russian = propsTranslate;
+        let tags = props.tags
         const word = { id, english, transcription, russian, tags };
         props.handlerInputSave(word);
     }
@@ -118,9 +118,9 @@ function TableWords(props) {
 
     return (
         <tr>
-            <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="word" value={propsWordVal} /> : <input readOnly className="input" value={propsWord} />}</td>
-            <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="transcription" value={propsTranscriptionVal} /> : <input readOnly className="input" value={propsTranscription} />}</td>
-            <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="translate" value={propsTranslateVal} /> : <input readOnly className="input" value={propsTranslate} />}</td>
+            <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="word" value={propsWord} /> : <input readOnly className="input" value={propsWord} />}</td>
+            <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="transcription" value={propsTranscription} /> : <input readOnly className="input" value={propsTranscription} />}</td>
+            <td>{pressed ? <input className={`${classInput}`} onChange={handleInputChange} name="translate" value={propsTranslate} /> : <input readOnly className="input" value={propsTranslate} />}</td>
             <td className="buttons">
                 <button title={pressed ? "cancel edit" : "edit"} onClick={handleChange} className="edit"><img src={edit} alt="btn edit" /></button>
                 <button title="save" onClick={putForm} className={`${classButton}`}><img src={save} alt="btn save" /></button>

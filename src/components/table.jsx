@@ -63,6 +63,7 @@ const Table = inject(['wordsStore'])(observer(({ wordsStore }) => {
                                         word={word.english}
                                         transcription={word.transcription}
                                         translate={word.russian}
+                                        tags={word.tags}
                                         handlerDelete={handlerDelete}
                                         handlerInputSave={handlerInputSave}>
                                     </TableWords>

@@ -61,6 +61,7 @@ class WordsStore {
   };
 
   handlerInputSave = (updatedWord) => {
+    let flag = true;
     if (updatedWord.tags === undefined || updatedWord.tags.length === 0) {
       let tags = prompt("Введите тег для слова");
       let tagTest = /^[А-Яа-яЁё\s]+$/;
@@ -69,19 +70,23 @@ class WordsStore {
       }
       else {
         alert("Убедитесь, что вы вводите символы на кириллице.")
+        flag = false;
       }
     }
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(updatedWord)
-    };
-    fetch(`/api/words/${updatedWord.id}/update`, options).then(response => response.json())
-      .then(data => {
-        console.log(data)
-      });
-    alert("Слово изменено!")
-    const index = this.wordsApi.findIndex((h) => h.id === updatedWord.id);
-    this.wordsApi[index] = updatedWord;
+    console.log(flag);
+    if (flag) {
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(updatedWord)
+      };
+      fetch(`/api/words/${updatedWord.id}/update`, options).then(response => response.json())
+        .then(data => {
+          console.log(data)
+        });
+      alert("Слово изменено!")
+      const index = this.wordsApi.findIndex((h) => h.id === updatedWord.id);
+      this.wordsApi[index] = updatedWord;
+    }
   };
 
 
